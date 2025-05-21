@@ -1,3 +1,4 @@
+import os
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -7,7 +8,10 @@ import datetime
 import re
 from dateutil import parser
 
-redis_client = redis.Redis(host='localhost', port=6379, db=0)
+# redis_client = redis.Redis(host='localhost', port=6379, db=0)
+
+redis_url = os.getenv('REDIS_URL')
+redis_client = redis.from_url(redis_url, ssl=True)
 
 # Regex pattern to validate final tracking number
 TRACKING_REGEX = re.compile(r'^[A-Z0-9]{1,16}$')
