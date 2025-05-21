@@ -11,7 +11,7 @@ from dateutil import parser
 # redis_client = redis.Redis(host='localhost', port=6379, db=0)
 
 redis_url = os.getenv('REDIS_URL')
-redis_client = redis.from_url(redis_url, ssl=True)
+redis_client = redis.from_url(redis_url)
 
 # Regex pattern to validate final tracking number
 TRACKING_REGEX = re.compile(r'^[A-Z0-9]{1,16}$')
